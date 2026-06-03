@@ -12,8 +12,10 @@ class UserController extends Controller
 
     function info()
     {
-        $name = "Anil";
-        return view('info', ["nam" => $name]);
+        $collage = ['smit', 'smu', 'tu', 'PU', 'AMIT'];
+
+        $name = ["ram", "bikram", "prajwal"];
+        return view('info', ["nam" => $name[1], "collages" => $collage]);
     }
 
     function root()
