@@ -1,0 +1,1 @@
+<h1>info admin page</h1>
