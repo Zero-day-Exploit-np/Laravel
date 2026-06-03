@@ -7,3 +7,6 @@
 <a href="/about">About</a>
 <a href="/contract/name">Contract</a>
 <h1>{{ rand() }}</h1>
+
+@include('common.inner',['page'=>"this is home page sub view"])
+@includeIf('common.inner2',['page'=>"this is home page sub view"])
