@@ -24,7 +24,7 @@ Route::get('/contract/{name}', function ($name) {
 });
 
 Route::view('/helppage', 'help');
-
+Route::view('user-form', 'user-form');
 
 Route::get('User', [UserController::class, 'getUser']);
 Route::get('Name/{name}', [UserController::class, 'name']);
@@ -36,7 +36,7 @@ Route::get('help', [UserController::class, 'help']);
 Route::get('userhelp', [UserController::class, 'userhelp']);
 Route::get('info', [UserController::class, 'info']);
 Route::get('/', [UserController::class, 'root']);
-
+Route::post('adduser', [UserController::class, 'adduser']);
 
 
 Route::get('Viewuser', [Viewcontroller::class, 'getUser']);

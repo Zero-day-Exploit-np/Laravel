@@ -70,4 +70,17 @@ class UserController extends Controller
             echo ('page not found');
         }
     }
+    function adduser(Request $data)
+    {
+        echo "user add successfully";
+        echo "<br>";
+        echo "user name is $data->username";
+        echo "<br>";
+
+        echo "user email is $data->email";
+        echo "<br>";
+        echo "user password is $data->password";
+
+        // return $data;
+    }
 }
