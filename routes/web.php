@@ -41,3 +41,6 @@ Route::post('adduser', [UserController::class, 'adduser']);
 
 Route::get('Viewuser', [Viewcontroller::class, 'getUser']);
 Route::get('Viewname', [Viewcontroller::class, 'name']);
+
+Route::view('user-login','userlogin');
+ROute::post('login-form',[UserController::class,'Loginform']);

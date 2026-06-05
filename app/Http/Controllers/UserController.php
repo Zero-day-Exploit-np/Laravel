@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\MockObject\Stub\ReturnReference;
 use Illuminate\Support\Facades\View;
+use PharIo\Manifest\Email;
 
 class UserController extends Controller
 {
@@ -72,15 +73,37 @@ class UserController extends Controller
     }
     function adduser(Request $data)
     {
-        echo "user add successfully";
-        echo "<br>";
-        echo "user name is $data->username";
-        echo "<br>";
 
-        echo "user email is $data->email";
-        echo "<br>";
-        echo "user password is $data->password";
+        // echo "user add successfully";
+        // echo "<br>";
+        // echo "user name is $data->username";
+        // echo "<br>";
 
-        // return $data;
+        // echo "user email is $data->email";
+        // echo "<br>";
+        // echo "user password is $data->password";
+
+
+        $data->validate([
+
+            'username' => 'required |min:3 | max:20',
+            'email' => 'required | email',
+            'password' => 'required'
+        ], [
+            'username.required' => 'UserName Must Required',
+            'username.min' => 'username must be more then 3 char ',
+            'username.max' => 'username must be less then 20 char',
+            'email.email' => 'Email id must required',
+            'password.required' => 'Password must required'
+        ]);
+        return $data;
+    }
+
+    function loginform(Request $request)
+    {
+        echo $request->city;
+        echo "<br/>";
+        print_r($request->skill);
+        // return $request;
     }
 }
