@@ -106,4 +106,14 @@ class UserController extends Controller
         print_r($request->skill);
         // return $request;
     }
+
+    function show(){
+        return "student list";
+    }
+    function add(){
+        return "add new student";
+    }
+    function delete(){
+        return "user delete";
+    }
 }

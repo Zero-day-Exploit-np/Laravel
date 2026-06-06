@@ -24,7 +24,11 @@ Route::get('/contract/{name}', function ($name) {
 });
 
 Route::view('/helppage', 'help');
-Route::view('user-form', 'user-form');
+Route::view('user-form/profile/dasboard', 'user-form')->name('userform');
+
+Route::view('system/{name}', 'system');
+Route::view('system1', 'system');
+
 
 Route::get('User', [UserController::class, 'getUser']);
 Route::get('Name/{name}', [UserController::class, 'name']);
@@ -42,5 +46,29 @@ Route::post('adduser', [UserController::class, 'adduser']);
 Route::get('Viewuser', [Viewcontroller::class, 'getUser']);
 Route::get('Viewname', [Viewcontroller::class, 'name']);
 
-Route::view('user-login','userlogin');
-ROute::post('login-form',[UserController::class,'Loginform']);
+Route::view('user-login', 'userlogin');
+Route::post('login-form', [UserController::class, 'Loginform']);
+
+
+Route::prefix('student')->group(function () {
+
+    Route::get('show', [UserController::class, 'show']);
+    Route::get('delete', [UserController::class, 'delete']);
+    Route::get('add', [UserController::class, 'add']);
+});
+
+
+Route::controller(UserController::class)->group(function () {
+
+    Route::get('User',  'getUser');
+    Route::get('Name/{name}',  'name');
+    Route::get('userpage',  'userpage');
+    Route::get('Username/{name}', 'getusername');
+    Route::get('adminlogin',  'adminlogin');
+    Route::get('admininfo',  'admininfo');
+    Route::get('help',  'help');
+    Route::get('userhelp',  'userhelp');
+    Route::get('info',  'info');
+    Route::get('/',  'root');
+    Route::post('adduser',  'adduser');
+});

@@ -6,6 +6,7 @@
 <a href="/view">Home</a>
 <a href="/about">About</a>
 <a href="/contract/name">Contract</a>
+<a href="/system">system</a>
 <h1>{{ rand() }}</h1>
 
 @include('common.inner',['page'=>"this is home page sub view"])
