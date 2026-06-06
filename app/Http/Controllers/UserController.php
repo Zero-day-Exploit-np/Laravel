@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\MockObject\Stub\ReturnReference;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\DB;
 use PharIo\Manifest\Email;
+use Illuminate\Support\Facades\Http;
 
 class UserController extends Controller
 {
@@ -27,10 +29,10 @@ class UserController extends Controller
 
 
     //
-    function getuser()
-    {
-        return 'calling getuser function. from usercontroller';
-    }
+    // function getuser()
+    // {
+    //     return 'calling getuser function. from usercontroller';
+    // }
 
     function name($name)
     {
@@ -107,13 +109,43 @@ class UserController extends Controller
         // return $request;
     }
 
-    function show(){
+    function show()
+    {
         return "student list";
     }
-    function add(){
+    function add()
+    {
         return "add new student";
     }
-    function delete(){
+    function delete()
+    {
         return "user delete";
+    }
+
+
+    function users()
+    {
+        // return "user function";
+        $users = DB::select('select * from users');
+        return view('user', ['users' => $users]);
+    }
+    function getStudent()
+    {
+        $data = new \App\Models\Student;
+        echo $data->testfun();
+        $students = \App\Models\Student::all();
+        return view('student', ['data' => $students]);
+    }
+    function apicalling()
+    {
+        $response = Http::get('https://jsonplaceholder.typicode.com/users/1');
+        $response = $response->body();
+        return view('apipage', ['data' => json_decode($response)]);
+    }
+    function queries()
+    {
+        $result = DB::table('users')->get();
+        // return $result;
+        return view('queries', ['users' => $result]);
     }
 }
