@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\MockObject\Stub\ReturnReference;
 use Illuminate\Support\Facades\View;
@@ -144,8 +145,21 @@ class UserController extends Controller
     }
     function queries()
     {
-        $result = DB::table('users')->get();
-        // return $result;
-        return view('queries', ['users' => $result]);
+        // $result = DB::table('users')->get();
+        // // return $result;
+        // return view('queries', ['users' => $result]);
+
+        $response = User::insert([
+            'Name' => 'test',
+            'Email' => 'test@example.com',
+            'Phone' => '0000000000',
+
+        ]);
+
+        if ($response) {
+            return "done";
+        } else {
+            return 'error';
+        }
     }
 }
