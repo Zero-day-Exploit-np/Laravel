@@ -7,10 +7,19 @@ use App\Http\Middleware\AgeCheck;
 use App\Http\Middleware\CountryCheck;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+
+Route::middleware('Setlang')->group(function () {
+
+
+    Route::get('setlang/{lang}', function ($lang) {
+        Session::put('lang', $lang);
+        return redirect('/');
+    });
+    Route::get('/', function () {
+        return view('welcome');
+    });
+});
 
 Route::get('/view', function () {   // '/view' can be any this. the home is the file name
     return view('home');
@@ -91,5 +100,13 @@ Route::controller(UserController::class)->group(function () {
 
 
 Route::get('apipage', [UserController::class, 'apicalling']);
-Route::get('database',[UserController::class,'queries']);
+Route::get('database', [UserController::class, 'queries']);
 
+Route::view('login', 'login');
+Route::post('login', [UserController::class, 'login']);
+
+Route::view('profile', 'profile');
+
+
+Route::get('logout', [UserController::class, 'logout']);
+// Route::view('logout', 'logout');

@@ -162,4 +162,27 @@ class UserController extends Controller
             return 'error';
         }
     }
+
+    function login(Request $request)
+    {
+        // $request->session()->put('user', $request->input('user'));
+        // $request->session()->put('allData', $request->input());
+
+
+        // $request->session()->flash('message', 'User has been added successfully');
+
+
+        // echo session('user');
+
+        $path = $request->file('file')->store('public');
+        $fileNameArray = explode("/", $path);
+        $fileName = $fileNameArray[1];
+        return view('profile', ['path' => $fileName]);
+        //    return redirect('login');
+    }
+    function logout()
+    {
+        session()->pull('user');
+        return redirect('profile');
+    }
 }
